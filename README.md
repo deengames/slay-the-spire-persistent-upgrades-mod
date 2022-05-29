@@ -12,5 +12,7 @@ These instructions are for Steam; follow appropriate download instructions for o
 
 For this mod:
 
-- Download the Slay the Spire Easy Mod JAR file into 
+- Download the Slay the Spire Easy Mod JAR file into `<repo root>/../lib`
+- Build via `build.sh` or `build.bat`
+- Copy the output into the `<slay the spire root>/mods` directory
 - Launch the game with mod support

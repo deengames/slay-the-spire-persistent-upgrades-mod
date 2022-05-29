@@ -10,19 +10,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 @SpireInitializer
-public class EasyModeMod implements ISubscriber, OnStartBattleSubscriber {
+public class PersistentUpgradesMod implements ISubscriber {
 
 	public static void initialize() {
-        new EasyModeMod();
+        new PersistentUpgradesMod();
     }
 	
-	public EasyModeMod() {
+	public PersistentUpgradesMod() {
 		BaseMod.subscribe(this);
-	}
-
-	@Override
-	public void receiveOnBattleStart(AbstractRoom battleRoom) {
-		AbstractPlayer player = AbstractDungeon.player;
-		player.heal(player.maxHealth);
 	}
 }
