@@ -1,5 +1,7 @@
 # Slay The Spire: Persistent Upgrades Mod
 
+![](media/screenshot.png)
+
 Slay the Spire too hard? Looking for something to get out of each run? Now you can! With this mod, after every failed run, you get:
 
 - An additional +2 max HP
