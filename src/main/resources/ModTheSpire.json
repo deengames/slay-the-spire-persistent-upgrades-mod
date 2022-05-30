@@ -1,9 +1,9 @@
 {
-  "modid": "easymode",
-  "name": "Easy Mode",
+  "modid": "persistentupgrades",
+  "name": "Persistent Upgrades",
   "author_list": ["NightBlade9"],
-  "description": "Health restores to max before each battle.",
-  "version": "1.1.0",
+  "description": "Gain bonus max health, strength, and metallicize for each time you die.",
+  "version": "1.0.0",
   "sts_version": "07-05-2019",
   "mts_version": "2.6.0",
   "dependencies": ["basemod"]

@@ -7,19 +7,27 @@ import java.util.List;
 
 import basemod.BaseMod;
 import basemod.interfaces.ISubscriber;
+import basemod.interfaces.OnStartBattleSubscriber;
 import basemod.interfaces.PostDeathSubscriber;
 import basemod.interfaces.StartGameSubscriber;
 
-import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.MetallicizePower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 
 @SpireInitializer
 /// Stores the number of games played in a text file; uses that to determine amount of upgrades.
-public class PersistentUpgradesMod implements ISubscriber, StartGameSubscriber, PostDeathSubscriber {
+public class PersistentUpgradesMod implements ISubscriber, StartGameSubscriber, OnStartBattleSubscriber, PostDeathSubscriber {
 
 	private final String DATA_FILE_NAME = "PersistentUpgradesMod.dat";
+	private final int HEALTH_PER_GAME = 2;
+	private final int STRENGTH_PER_GAME = 1;
+	private final int BLOCK_PER_GAME = 1;
 
 	public static void initialize() {
         new PersistentUpgradesMod();
@@ -29,11 +37,24 @@ public class PersistentUpgradesMod implements ISubscriber, StartGameSubscriber, 
 		BaseMod.subscribe(this);
 	}
 
-	public void receiveStartGame() {
+	@Override
+	public void receiveOnBattleStart(AbstractRoom battleRoom) {
+		AbstractPlayer player = AbstractDungeon.player;
 		int numGames = getNumGames();
-		// TODO: apply 2n max HP, 1n strength, 1n metalicize
+
+		AbstractPower strengthPower = new StrengthPower(player, numGames * STRENGTH_PER_GAME);
+		AbstractPower metallicizePower = new MetallicizePower(player, numGames * BLOCK_PER_GAME);
+		player.powers.add(strengthPower);
+		player.powers.add(metallicizePower);
 	}
 
+	@Override
+	public void receiveStartGame() {
+		int numGames = getNumGames();
+		AbstractDungeon.player.increaseMaxHp(numGames * HEALTH_PER_GAME, true);
+	}
+
+	@Override
 	public void receivePostDeath() {
 		int numGames = getNumGames();
 		numGames += 1;
