@@ -12,6 +12,10 @@ These compound over time, so 10 failed runs see you starting with +20 max HP, 10
 
 # Installation Instructions
 
+[Download from Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2814839314).
+
+# Development Setup
+
 These instructions are for Steam; follow appropriate download instructions for other platforms.
 
 - If this is your first mod, subscribe to (Steam workshop) or download the "Mod the Spire" mod
