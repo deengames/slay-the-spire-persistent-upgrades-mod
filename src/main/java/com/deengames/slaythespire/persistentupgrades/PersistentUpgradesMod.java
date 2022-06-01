@@ -1,4 +1,4 @@
-package com.deengames.slaythespire.easymode;
+package com.deengames.slaythespire.persistentupgrades;
 
 import java.io.IOException;
 import java.nio.file.Files;
