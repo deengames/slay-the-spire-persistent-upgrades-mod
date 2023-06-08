@@ -26,7 +26,7 @@ public class PersistentUpgradesMod implements ISubscriber, StartGameSubscriber, 
 
 	private final String DATA_FILE_NAME = "PersistentUpgradesMod.dat";
 	private final int HEALTH_PER_GAME = 2;
-	private final int STRENGTH_PER_GAME = 1;
+	private final float STRENGTH_PER_GAME = 0.5f;
 	private final int BLOCK_PER_GAME = 1;
 
 	public static void initialize() {
@@ -42,7 +42,8 @@ public class PersistentUpgradesMod implements ISubscriber, StartGameSubscriber, 
 		AbstractPlayer player = AbstractDungeon.player;
 		int numGames = getNumGames();
 
-		AbstractPower strengthPower = new StrengthPower(player, numGames * STRENGTH_PER_GAME);
+		int strengthGain = (int)Math.floor(numGames * STRENGTH_PER_GAME);
+		AbstractPower strengthPower = new StrengthPower(player, strengthGain);
 		AbstractPower metallicizePower = new MetallicizePower(player, numGames * BLOCK_PER_GAME);
 		player.powers.add(strengthPower);
 		player.powers.add(metallicizePower);
